@@ -1,0 +1,21 @@
+{{!< default}}
+
+{{#tag}}
+<section class="archive-header container">
+    <p class="archive-kicker mono"><span class="accent">$</span> grep -r --tag</p>
+    <h1 class="archive-title">#{{name}}</h1>
+    {{#if description}}
+        <p class="archive-desc">{{description}}</p>
+    {{/if}}
+    <p class="archive-count mono">{{plural ../pagination.total empty="no posts" singular="% post" plural="% posts"}}</p>
+</section>
+{{/tag}}
+
+<section class="container feed-section">
+    <div class="post-feed">
+        {{#foreach posts}}
+            {{> post-card}}
+        {{/foreach}}
+    </div>
+    {{pagination}}
+</section>

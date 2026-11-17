@@ -1,0 +1,43 @@
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="site-brand" href="{{@site.url}}" aria-label="{{@site.title}} home">
+            {{#if @site.logo}}
+                <img class="site-logo" src="{{img_url @site.logo size="s"}}" alt="{{@site.title}}">
+            {{else}}
+                <span class="brand-prompt" aria-hidden="true">~$</span>
+                <span class="brand-name">{{@site.title}}</span>
+                <span class="brand-cursor" aria-hidden="true"></span>
+            {{/if}}
+        </a>
+
+        <nav class="site-nav" id="site-nav" aria-label="Main">
+            {{navigation}}
+            {{> social-links mobile=true}}
+        </nav>
+
+        <div class="header-actions">
+            {{> social-links}}
+
+            <button class="icon-btn" type="button" data-ghost-search aria-label="Search">
+                {{> icons/search}}
+            </button>
+
+            {{> theme-menu}}
+
+            {{#if @site.members_enabled}}
+                {{#unless @member}}
+                    <a class="header-link signin-link" href="#/portal/signin" data-portal="signin">Sign in</a>
+                    {{#unless @site.members_invite_only}}
+                        <a class="btn btn-primary btn-sm subscribe-link" href="#/portal/signup" data-portal="signup">Subscribe</a>
+                    {{/unless}}
+                {{else}}
+                    <a class="btn btn-sm" href="#/portal/account" data-portal="account">Account</a>
+                {{/unless}}
+            {{/if}}
+
+            <button class="icon-btn menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+                {{> icons/menu}}
+            </button>
+        </div>
+    </div>
+</header>

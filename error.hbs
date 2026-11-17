@@ -1,0 +1,10 @@
+{{!< default}}
+
+<section class="error-page container">
+    <p class="error-code mono">{{statusCode}}</p>
+    <h1 class="error-title">{{message}}</h1>
+    <pre class="error-term mono"><span class="accent">$</span> curl -sI {{@site.url}}
+HTTP/2 {{statusCode}}
+<span class="error-muted"># Nothing to exploit here. Head back to safety.</span></pre>
+    <a class="btn btn-primary" href="{{@site.url}}">cd ~</a>
+</section>

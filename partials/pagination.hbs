@@ -1,0 +1,15 @@
+{{#match pages ">" 1}}
+<nav class="pagination mono" aria-label="Pagination">
+    {{#if prev}}
+        <a class="pagination-link newer" href="{{page_url prev}}">&larr; newer</a>
+    {{else}}
+        <span></span>
+    {{/if}}
+    <span class="pagination-count">page {{page}} / {{pages}}</span>
+    {{#if next}}
+        <a class="pagination-link older" href="{{page_url next}}">older &rarr;</a>
+    {{else}}
+        <span></span>
+    {{/if}}
+</nav>
+{{/match}}

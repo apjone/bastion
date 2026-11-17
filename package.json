@@ -1,0 +1,79 @@
+{
+    "name": "bastion",
+    "description": "A clean, security-focused Ghost theme with visitor-switchable light, dark and system colour modes.",
+    "demo": "https://apjone.uk",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/apjone/bastion.git"
+    },
+    "version": "1.0.0",
+    "engines": {
+        "ghost": ">=5.0.0"
+    },
+    "license": "MIT",
+    "screenshots": {},
+    "author": {
+        "name": "apjone.uk",
+        "email": "64482572+apjone@users.noreply.github.com",
+        "url": "https://apjone.uk"
+    },
+    "keywords": [
+        "ghost",
+        "theme",
+        "ghost-theme",
+        "security",
+        "dark-mode",
+        "blog"
+    ],
+    "config": {
+        "posts_per_page": 12,
+        "image_sizes": {
+            "xs": {
+                "width": 160
+            },
+            "s": {
+                "width": 320
+            },
+            "m": {
+                "width": 720
+            },
+            "l": {
+                "width": 1200
+            },
+            "xl": {
+                "width": 2000
+            }
+        },
+        "card_assets": true,
+        "custom": {
+            "default_color_scheme": {
+                "type": "select",
+                "options": [
+                    "System",
+                    "Light",
+                    "Dark"
+                ],
+                "default": "System",
+                "description": "Colour scheme first-time visitors see. Visitors can change it in the header."
+            },
+            "show_homepage_intro": {
+                "type": "boolean",
+                "default": true,
+                "group": "homepage",
+                "description": "Show the site title, description and signup form above the post list."
+            },
+            "show_post_thumbnails": {
+                "type": "boolean",
+                "default": true,
+                "group": "homepage",
+                "description": "Show feature image thumbnails in post lists."
+            },
+            "show_related_posts": {
+                "type": "boolean",
+                "default": true,
+                "group": "post",
+                "description": "Show up to three related posts (sharing a tag) under each post."
+            }
+        }
+    }
+}

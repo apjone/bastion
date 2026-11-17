@@ -1,0 +1,25 @@
+<div class="theme-menu" data-theme-menu>
+    <button type="button" class="theme-menu-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="theme-menu-list" aria-label="Colour scheme" title="Colour scheme">
+        <span class="tm-icon tm-light">{{> icons/sun}}</span>
+        <span class="tm-icon tm-system">{{> icons/monitor}}</span>
+        <span class="tm-icon tm-dark">{{> icons/moon}}</span>
+        <span class="tm-chevron">{{> icons/chevron}}</span>
+    </button>
+    <ul class="theme-menu-list" id="theme-menu-list" role="menu" aria-label="Colour scheme" hidden>
+        <li role="none">
+            <button type="button" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme-value="light">
+                {{> icons/sun}}<span>Light</span><span class="tm-check">{{> icons/check}}</span>
+            </button>
+        </li>
+        <li role="none">
+            <button type="button" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme-value="dark">
+                {{> icons/moon}}<span>Dark</span><span class="tm-check">{{> icons/check}}</span>
+            </button>
+        </li>
+        <li role="none">
+            <button type="button" role="menuitemradio" aria-checked="false" tabindex="-1" data-theme-value="system">
+                {{> icons/monitor}}<span>System</span><span class="tm-check">{{> icons/check}}</span>
+            </button>
+        </li>
+    </ul>
+</div>

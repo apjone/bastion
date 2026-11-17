@@ -1,0 +1,15 @@
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-brand mono">
+            <span class="accent">$</span> echo "&copy; {{date format="YYYY"}} {{@site.title}}"
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+            {{navigation type="secondary"}}
+        </nav>
+        <div class="footer-meta">
+            {{> social-links}}
+            <span class="footer-sep" aria-hidden="true">·</span>
+            <a href="https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a>
+        </div>
+    </div>
+</footer>

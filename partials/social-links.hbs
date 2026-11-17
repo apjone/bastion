@@ -1,0 +1,45 @@
+{{!--
+    Social icons for the header and footer.
+    X and Facebook come from Settings → General → Social accounts.
+    The rest come from the staff profile below (Settings → Staff → your profile → Social links).
+    GitHub isn't a Ghost field, so it is hard-coded.
+--}}
+<ul class="social-links{{#if mobile}} social-links-mobile{{/if}}">
+    {{#if @site.twitter}}
+        <li><a href="{{social_url type="twitter"}}" target="_blank" rel="noopener me" aria-label="X (Twitter)" title="X (Twitter)">{{> icons/x}}</a></li>
+    {{/if}}
+
+    <li><a href="https://github.com/apjone/" target="_blank" rel="noopener me" aria-label="GitHub" title="GitHub">{{> icons/github}}</a></li>
+
+    {{#get "authors" filter="slug:tony" limit="1"}}
+        {{#foreach authors}}
+            {{#if mastodon}}
+                <li><a href="{{social_url type="mastodon"}}" target="_blank" rel="noopener me" aria-label="Mastodon" title="Mastodon">{{> icons/mastodon}}</a></li>
+            {{/if}}
+            {{#if bluesky}}
+                <li><a href="{{social_url type="bluesky"}}" target="_blank" rel="noopener me" aria-label="Bluesky" title="Bluesky">{{> icons/bluesky}}</a></li>
+            {{/if}}
+            {{#if threads}}
+                <li><a href="{{social_url type="threads"}}" target="_blank" rel="noopener me" aria-label="Threads" title="Threads">{{> icons/threads}}</a></li>
+            {{/if}}
+            {{#if linkedin}}
+                <li><a href="{{social_url type="linkedin"}}" target="_blank" rel="noopener me" aria-label="LinkedIn" title="LinkedIn">{{> icons/linkedin}}</a></li>
+            {{/if}}
+            {{#if youtube}}
+                <li><a href="{{social_url type="youtube"}}" target="_blank" rel="noopener me" aria-label="YouTube" title="YouTube">{{> icons/youtube}}</a></li>
+            {{/if}}
+            {{#if instagram}}
+                <li><a href="{{social_url type="instagram"}}" target="_blank" rel="noopener me" aria-label="Instagram" title="Instagram">{{> icons/instagram}}</a></li>
+            {{/if}}
+            {{#if tiktok}}
+                <li><a href="{{social_url type="tiktok"}}" target="_blank" rel="noopener me" aria-label="TikTok" title="TikTok">{{> icons/tiktok}}</a></li>
+            {{/if}}
+        {{/foreach}}
+    {{/get}}
+
+    {{#if @site.facebook}}
+        <li><a href="{{social_url type="facebook"}}" target="_blank" rel="noopener me" aria-label="Facebook" title="Facebook">{{> icons/facebook}}</a></li>
+    {{/if}}
+
+    <li><a href="{{@site.url}}/rss/" aria-label="RSS feed" title="RSS feed">{{> icons/rss}}</a></li>
+</ul>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{meta_title}}</title>
+
+    {{!-- Resolve the colour scheme before any CSS paints, so there is no flash. --}}
+    <script>
+        (function () {
+            var d = document.documentElement, pref;
+            try { pref = localStorage.getItem('bastion-theme'); } catch (e) {}
+            if (pref !== 'light' && pref !== 'dark' && pref !== 'system') {
+                pref = '{{@custom.default_color_scheme}}'.toLowerCase();
+                if (pref !== 'light' && pref !== 'dark') pref = 'system';
+            }
+            var dark = pref === 'dark' || (pref === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            d.setAttribute('data-theme-pref', pref);
+            d.setAttribute('data-theme', dark ? 'dark' : 'light');
+        })();
+    </script>
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#f6f7f9">
+
+    <link rel="preload" href="{{asset "fonts/OpenDyslexic-Regular.woff2"}}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}">
+
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    {{> header}}
+
+    <main id="main" class="site-main">
+        {{{body}}}
+    </main>
+
+    {{> footer}}
+
+    <script src="{{asset "js/theme.js"}}" defer></script>
+    {{#is "post, page"}}
+        <script src="{{asset "js/prism.js"}}" defer></script>
+    {{/is}}
+
+    {{ghost_foot}}
+</body>
+</html>

@@ -1,0 +1,39 @@
+{{!< default}}
+
+{{#match pagination.page 1}}
+{{#if @custom.show_homepage_intro}}
+<section class="hero">
+    <div class="container">
+        <p class="hero-kicker mono"><span class="accent">$</span> cat ./README</p>
+        <h1 class="hero-title">{{@site.title}}</h1>
+        {{#if @site.description}}
+            <p class="hero-desc">{{@site.description}}</p>
+        {{/if}}
+
+        {{#if @site.members_enabled}}
+        {{#unless @member}}
+        {{#unless @site.members_invite_only}}
+            <form class="subscribe-form" data-members-form="subscribe">
+                <label class="sr-only" for="hero-email">Email address</label>
+                <input id="hero-email" data-members-email type="email" required placeholder="you@example.com" autocomplete="email">
+                <button class="btn btn-primary" type="submit">Subscribe</button>
+                <p class="form-msg form-success">Check your inbox to confirm your subscription.</p>
+                <p class="form-msg form-error" data-members-error></p>
+            </form>
+        {{/unless}}
+        {{/unless}}
+        {{/if}}
+    </div>
+</section>
+{{/if}}
+{{/match}}
+
+<section class="container feed-section">
+    <h2 class="section-label mono">// latest posts</h2>
+    <div class="post-feed">
+        {{#foreach posts}}
+            {{> post-card}}
+        {{/foreach}}
+    </div>
+    {{pagination}}
+</section>

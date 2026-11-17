@@ -1,0 +1,32 @@
+<article class="post-card {{post_class}}{{#if @custom.show_post_thumbnails}}{{#if feature_image}} has-image{{/if}}{{/if}}">
+    <div class="post-card-body">
+        <div class="post-card-meta mono">
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+            {{#if primary_tag}}
+                <span class="sep" aria-hidden="true">/</span>
+                <a class="post-card-tag" href="{{primary_tag.url}}">#{{primary_tag.slug}}</a>
+            {{/if}}
+            {{#if featured}}<span class="badge">featured</span>{{/if}}
+            {{#match visibility "!=" "public"}}<span class="badge badge-muted">{{> icons/lock}} {{visibility}}</span>{{/match}}
+        </div>
+
+        <h3 class="post-card-title"><a href="{{url}}">{{title}}</a></h3>
+
+        <p class="post-card-excerpt">{{excerpt words="40"}}</p>
+
+        <div class="post-card-footer mono">{{reading_time}}</div>
+    </div>
+
+    {{#if @custom.show_post_thumbnails}}
+        {{#if feature_image}}
+            <a class="post-card-image" href="{{url}}" tabindex="-1" aria-hidden="true">
+                <img
+                    srcset="{{img_url feature_image size="s"}} 320w, {{img_url feature_image size="m"}} 720w"
+                    sizes="(max-width: 640px) 100vw, 240px"
+                    src="{{img_url feature_image size="m"}}"
+                    alt=""
+                    loading="lazy">
+            </a>
+        {{/if}}
+    {{/if}}
+</article>

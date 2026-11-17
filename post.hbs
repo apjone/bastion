@@ -1,0 +1,126 @@
+{{!< default}}
+
+<div class="reading-progress" aria-hidden="true"></div>
+
+{{#post}}
+<article class="article {{post_class}}">
+
+    <header class="article-header gh-canvas">
+        <div class="article-kicker mono">
+            {{#if primary_tag}}
+                <a href="{{primary_tag.url}}">#{{primary_tag.slug}}</a>
+            {{/if}}
+            {{#match visibility "!=" "public"}}<span class="badge badge-muted">{{> icons/lock}} {{visibility}}</span>{{/match}}
+        </div>
+
+        <h1 class="article-title">{{title}}</h1>
+
+        {{#if custom_excerpt}}
+            <p class="article-excerpt">{{custom_excerpt}}</p>
+        {{/if}}
+
+        <div class="article-meta">
+            <div class="author-avatars">
+                {{#foreach authors}}
+                    {{#if profile_image}}
+                        <a href="{{url}}" title="{{name}}"><img src="{{img_url profile_image size="xs"}}" alt="{{name}}"></a>
+                    {{/if}}
+                {{/foreach}}
+            </div>
+            <div class="meta-text">
+                <span class="meta-authors">{{authors}}</span>
+                <span class="mono meta-sub">
+                    <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                    <span aria-hidden="true">·</span> {{reading_time}}
+                </span>
+            </div>
+        </div>
+    </header>
+
+    {{#if feature_image}}
+        <figure class="article-image gh-canvas">
+            <img
+                srcset="{{img_url feature_image size="m"}} 720w, {{img_url feature_image size="l"}} 1200w, {{img_url feature_image size="xl"}} 2000w"
+                sizes="(min-width: 1200px) 1120px, 100vw"
+                src="{{img_url feature_image size="l"}}"
+                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}">
+            {{#if feature_image_caption}}
+                <figcaption>{{feature_image_caption}}</figcaption>
+            {{/if}}
+        </figure>
+    {{/if}}
+
+    <section class="gh-content gh-canvas">
+        {{content}}
+    </section>
+
+    <footer class="article-footer gh-canvas">
+        <div class="article-footer-inner">
+            {{#if tags}}
+                <div class="article-tags">
+                    {{#foreach tags}}
+                        <a class="tag-chip" href="{{url}}">#{{slug}}</a>
+                    {{/foreach}}
+                </div>
+            {{/if}}
+
+            {{> subscribe-cta}}
+
+            {{#foreach authors}}
+                <div class="author-card">
+                    {{#if profile_image}}
+                        <img class="author-card-img" src="{{img_url profile_image size="xs"}}" alt="{{name}}" loading="lazy">
+                    {{/if}}
+                    <div>
+                        <p class="author-card-label mono">// written by</p>
+                        <h3 class="author-card-name"><a href="{{url}}">{{name}}</a></h3>
+                        {{#if bio}}<p class="author-card-bio">{{bio}}</p>{{/if}}
+                        {{> author-social}}
+                    </div>
+                </div>
+            {{/foreach}}
+
+            <nav class="post-nav" aria-label="More posts">
+                {{#prev_post}}
+                    <a class="post-nav-link prev" href="{{url}}">
+                        <span class="post-nav-label mono">&larr; previous</span>
+                        <span class="post-nav-title">{{title}}</span>
+                    </a>
+                {{/prev_post}}
+                {{#next_post}}
+                    <a class="post-nav-link next" href="{{url}}">
+                        <span class="post-nav-label mono">next &rarr;</span>
+                        <span class="post-nav-title">{{title}}</span>
+                    </a>
+                {{/next_post}}
+            </nav>
+        </div>
+    </footer>
+
+    {{#if comments}}
+        <section class="article-comments gh-canvas">
+            {{comments}}
+        </section>
+    {{/if}}
+
+</article>
+{{/post}}
+
+{{#if @custom.show_related_posts}}
+{{#get "posts" filter="tags:[{{post.tags}}]+id:-{{post.id}}" limit="3" as |related|}}
+    {{#if related}}
+        <section class="related container">
+            <h2 class="section-label mono">// related</h2>
+            <div class="related-grid">
+                {{#foreach related}}
+                    <a class="related-card" href="{{url}}">
+                        <span class="related-meta mono"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>{{#if primary_tag}} / #{{primary_tag.slug}}{{/if}}</span>
+                        <span class="related-title">{{title}}</span>
+                        <span class="related-time mono">{{reading_time}}</span>
+                    </a>
+                {{/foreach}}
+            </div>
+        </section>
+    {{/if}}
+{{/get}}
+{{/if}}
